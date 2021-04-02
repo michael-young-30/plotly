@@ -9,7 +9,7 @@ function buildMetadata(sample){
       PANEL.append("h6").text(`${key.toUpperCase()}: ${value}`);
     });
 
-  })
+  });
 }
 
 function buildCharts(sample){
@@ -71,7 +71,6 @@ function buildCharts(sample){
 
 
 function init(){
-  console.log("Hello World");
   var selector = d3.select("#selDataset");
   d3.json("./static/samples.json").then(function(data){
     console.log(data);
@@ -92,6 +91,6 @@ function init(){
 }
 function optionChanged(newSample){
   buildCharts(newSample);
-  buildMetadate(newSample);
+  buildMetadata(newSample);
 };
 init();
