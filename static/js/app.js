@@ -1,5 +1,15 @@
 function buildMetadata(sample){
+  d3.json("./static/samples.json").then((data)=>{
+    var metadata = data.metadata;
+    var resultArray = metadata.filter(sampleObj => sampleObj.id ==sample);
+    var result = resultArray [0];
+    var PANEL = d3.select("#sample-metadata");
+    PANEL.html("");
+    Object.entries(result).forEach(([key, value])=>{
+      PANEL.append("h6").text(`${key.toUpperCase()}: ${value}`);
+    });
 
+  })
 }
 
 function buildCharts(sample){
@@ -80,4 +90,8 @@ function init(){
     buildMetadata(firstSample);
   });
 }
-init()
+function optionChanged(newSample){
+  buildCharts(newSample);
+  buildMetadate(newSample);
+};
+init();
